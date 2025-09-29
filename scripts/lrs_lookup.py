@@ -35,7 +35,7 @@ def get_grpo_lr(model: str):
     hashed_model = hash_model(model)
     for lr in grpo_lrs:
         if lr["h"] == hashed_model:
-            return lr["lr"]
+            return lr["lr"] * 1.05
     return None
 
 def get_instruct_lr(model: str):
@@ -50,5 +50,5 @@ def get_grpo_python_lr(model: str):
     hashed_model = hash_model(model)
     for lr in grpo_python_lrs:
         if lr["h"] == hashed_model:
-            return lr["lr"]
+            return lr["lr"] * 1.05
     return None
