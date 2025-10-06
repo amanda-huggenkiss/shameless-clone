@@ -255,6 +255,8 @@ def get_training_json(train_info: dict) -> dict:
         # get lr from lrs_lookup.py
         lr = get_instruct_lr(model_name)
         if lr is not None:
+            if "gemma" in model_architecture:
+                lr = lr / 1.2
             print(f"Using lr from lk: {lr}", flush=True)
             run_config["learning_rate"] = lr
         else:

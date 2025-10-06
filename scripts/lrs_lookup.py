@@ -24,25 +24,28 @@ def hash_model(model: str) -> str:
 
 
 def get_dpo_lr(model: str):
+    scale_factor = 1.1
     hashed_model = hash_model(model)
     for lr in dpo_lrs:
         if lr["h"] == hashed_model:
-            return lr["lr"]
+            return lr["lr"] * scale_factor
     return None
 
 
 def get_grpo_lr(model: str):
+    scale_factor = 1.5
     hashed_model = hash_model(model)
     for lr in grpo_lrs:
         if lr["h"] == hashed_model:
-            return lr["lr"] * 1.05
+            return lr["lr"] * scale_factor
     return None
 
 def get_instruct_lr(model: str):
+    scale_factor = 1.2
     hashed_model = hash_model(model)
     for lr in instruct_lrs:
         if lr["h"] == hashed_model:
-            return lr["lr"]
+            return lr["lr"] * scale_factor
     return None
 
 
@@ -50,5 +53,5 @@ def get_grpo_python_lr(model: str):
     hashed_model = hash_model(model)
     for lr in grpo_python_lrs:
         if lr["h"] == hashed_model:
-            return lr["lr"] * 1.05
+            return lr["lr"]
     return None
