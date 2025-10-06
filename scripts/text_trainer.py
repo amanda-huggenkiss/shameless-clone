@@ -166,7 +166,7 @@ def main():
     parser.add_argument(
         "--task-type",
         required=True,
-        choices=["InstructTextTask", "DpoTask", "GrpoTask"],
+        choices=["InstructTextTask", "DpoTask", "GrpoTask", "ChatTask"],
         help="Type of task",
     )
     parser.add_argument(
@@ -270,7 +270,7 @@ def main():
         "find_lk_lr": True,
     }
 
-    if args.task_type == TaskType.INSTRUCTTEXTTASK.value:
+    if args.task_type == TaskType.INSTRUCTTEXTTASK.value or args.task_type == TaskType.CHATTASK.value:
         train_info = get_instruct_training_json(train_info)
         tokenize_cmd = (
             f"/workspace/axo_py/bin/python tokenize_instruct.py {request_path}"
